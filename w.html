@@ -1,0 +1,590 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>太阳系</title>
+  <style>
+    .transparent-nav {
+            position: fixed;       /* 固定在顶部，不随页面滚动移动 */
+            top: 0;                /* 顶部对齐 */
+            left: 0;               /* 左侧对齐 */
+            width: 100%;           /* 宽度占满整个页面 */
+           /* 原代码第10-12行修改为 */
+            background: linear-gradient(to top, rgba(43, 42, 42, 0), rgb(0, 0, 0.3));
+
+            z-index: 999;          /* 确保导航栏在所有内容上方 */
+            padding: 30px 0;       /* 上下内边距，增加点击区域 */
+        }
+        /* CSS新增样式 */
+        
+           
+        
+        .bg-video{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height:100%;
+            object-fit:cover;
+            z-index:-1;
+        }
+        body {
+          overflow: hidden;
+          height: 100%; 
+        }
+
+        /* 右边logo设计 */
+    .contact-group {
+      position: fixed;
+      right: 50px;    /* 距离页面右侧的距离 */
+      top: 0%;       /* 距离页面顶部的距离，可按需调整 */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      z-index: 9999;  /* 确保层级最高，不被遮挡 */
+    }
+
+    .vertical-line.top-line {
+      width: 2px;
+      height: 300px;  /* 竖线长度，可按需调整 */
+      background:#cccccc94 ; 
+      margin-bottom: -105px; /* 竖线与文字的间距 */
+    }
+    .vertical-line.bottom-line{
+      width: 2px;
+      height:500px;
+      background: #cccccc94; 
+      margin-top: 110px; /* 竖线与文字的间距 */
+    }
+
+    .contact-text {
+      writing-mode: vertical-rl;  /* 文字垂直排列 */
+      text-orientation: mixed;
+      font-size: 16px;
+      color: #fff;   /* 文字颜色，适配深色背景 */
+      opacity: 0.9;
+      margin-left: 25px;
+    }
+    /*右边logo*/
+    .contact-img{
+      width:55px;
+      height: auto;
+      opacity:0.8;
+      transition: transform 0.3s ease;;
+      margin-top:40px;
+      filter:grayscale(100%);/* 鼠标悬停可通过滤镜调节颜色 */
+    }
+    .contact-img:hover{
+      transform: scale(1.1);
+      filter:grayscale(0%)sepia(100%)hue-rotate(180deg);
+    }
+    .first-img{
+      margin-top: 70px;
+    }
+
+    
+    body{
+        position: fixed;
+        overflow: hidden;
+    }
+    .img-container img{
+      position: absolute; 
+    }
+    .hover-img {
+      width: 300px; /* 图片宽度 */
+      z-index: 1;
+      position: relative;
+      transition: transform 1s ease; /* 过渡动画，控制速度和流畅度 */
+      }
+      .hover-img:hover {
+      transform: rotate(-90deg) scale(0.8);
+                /* 先旋转15度，再缩小至90% */
+      }
+    
+    .Sun img{
+      position: relative;
+      width: 2000px;
+      height: auto;
+      right: 1000px;
+      top: 500px;          
+    }
+    
+    
+     .Mercury{
+      position: relative;
+      bottom: 1450px;
+      left: 350px;
+      cursor: pointer;
+    }
+
+    .a{
+      position: relative;
+      width: 500px;
+      height: auto;
+      left: 80px;
+      top: 60px;
+    }
+    .mercury {
+      position: relative;
+      width: 180px;
+      height: auto;
+      left: 60px;
+      top: 60px;
+    }
+
+    .Venus{
+        position: relative;
+        bottom: 1220px;
+        left: 600px;
+    }
+    .venus{
+        width: 170px;
+        top: 70px;
+        left: 65px;
+    }
+
+    .Earth{
+        position: relative;
+        bottom: 1490px;
+        left: 810px;
+    }
+    .earth{
+        width: 140px;
+        left: 80px;
+        top: 80px;
+    }
+
+    .Mars{
+        position: relative;
+        bottom: 1850px;
+        left: 1030px;
+    }
+    .mars{
+        width: 145px;
+        top: 80px;
+        left: 80px;
+    }
+
+    .Jupiter{
+        position: relative;
+        bottom: 1650px;
+        left: 1300px;
+    }
+    .jupiter{
+        width: 200px;
+        top: 50px;
+        left: 52px;
+    }
+
+    .Saturn{
+        position: relative;
+        bottom: 1890px;
+        left: 1600px;
+    }
+    .saturn{
+        width: 450px;
+        left: -70px;
+        top: 20px;
+    }
+
+    .Uranus{
+        position: relative;
+        bottom: 1670px;
+        left: 1840px;
+    }
+    .uranus{
+        width: 170px;
+        left:65px;
+        top: 66px;
+    }
+
+    .Neptune{
+        position: relative;
+        bottom: 1970px;
+        left: 2100px;
+    }
+    .neptune{
+        width: 300px;
+        left:px;
+        top: px;
+    }
+
+    /* 卡片容器默认隐藏 */
+    .card img{
+      position: absolute;
+      height: auto;
+      width: 600px;
+      height: auto;
+      border: 5px solid #999999;
+      outline: 8px solid #ffffff23;
+      outline-offset: 0px;
+      left: 1600px;
+      bottom: 100px;
+    }
+    /* 水星卡片 */
+    .card .mercury {
+      border-radius:24px ;
+      position: absolute;         
+      display: none;
+    }
+    .Mercury:hover ~ .card .mercury {
+      display: block;
+      top: 865px;
+    }
+    /* 火星卡片 */
+    .card .venus {
+      border-radius:24px ;
+      position: absolute;         
+      display: none;
+    }
+    .Venus:hover ~ .card .venus {
+      display: block;
+      top: 864px;
+    }
+    /* 地球卡片 */
+    .card .earth {
+      border-radius:24px ;
+      position: absolute;         
+      display: none;
+    }
+    .Earth:hover ~ .card .earth {
+      display: block;
+      top: 865px;
+    }
+    /* 金星卡片 */
+    .card .mars {
+      border-radius:24px ;
+      position: absolute;         
+      display: none;
+    }
+    .Mars:hover ~ .card .mars {
+      display: block;
+      top: 865px;
+    }
+    /* 木星卡片 */
+    .card .jupiter {
+      border-radius:24px ;
+      position: absolute;         
+      display: none;
+    }
+    .Jupiter:hover ~ .card .jupiter {
+      display: block;
+      top: 865px;
+    }
+    /* 土星卡片 */
+    .card .saturn {
+      border-radius:24px ;
+      position: absolute;         
+      display: none;
+    }
+    .Saturn:hover ~ .card .saturn {
+      display: block;
+      top: 865px;
+    }
+     /* 天王星卡片 */
+    .card .uranus {
+      border-radius:24px ;
+      position: absolute;         
+      display: none;
+    }
+    .Uranus:hover ~ .card .uranus {
+      display: block;
+      top: 865px;
+    }
+     /* 海王星卡片 */
+    .card .neptune {
+      border-radius:24px ;
+      position: absolute;         
+      display: none;
+    }
+    .Neptune:hover ~ .card .neptune {
+      display: block;
+    }
+
+
+     /*导航栏*/
+    .title{
+        position: fixed;
+        top: 4%;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 99;
+       
+    }
+    nav {
+        position        : relative;
+        width           : 410px;
+        height          : 50px;
+        background-color: #fff;
+        border-radius   : 8px;
+        box-shadow      : 0 2px 3px rgba(0, 0, 0, 0.1);
+    }
+
+    nav a {
+        position   : relative;
+        display    : block;
+        float      : left;
+        font-size  : 15px;
+        line-height: 50px;
+
+        height             : 50px;
+        color              : rgb(70,100,180);
+        text-transform     : uppercase;
+        text-decoration    : none;
+        text-align         : center;
+        z-index            : 10;
+    }
+
+    nav a:nth-child(1) {
+        width: 100px;
+    }
+
+    nav a:nth-child(2) {
+        width: 110px;
+    }
+
+    nav a:nth-child(3) {
+        width: 100px;
+    }
+
+    nav a:nth-child(4) {
+        width: 100px;
+    }
+
+    nav .animation {
+        position        : absolute;
+        height          : 100%;
+        background-color: #F97F51;
+        z-index         : 9;
+        border-radius   : 8px;
+        transition: all 0.3s;
+        left: 210px;
+    }
+
+    .start-home,
+    nav a:nth-child(1):hover~.animation {
+        width: 100px;
+        left : 0px;
+    }
+    .start-about,
+    nav a:nth-child(2):hover~.animation {
+        width: 110px;
+        left : 100px;
+    }
+    .start-blog,
+    nav a:nth-child(3):hover~.animation {
+        width: 100px;
+        left : 210px;
+    }
+    .start-protfolio,
+    nav a:nth-child(4):hover~.animation {
+        width: 100px;
+        left : 310px;
+    }
+
+
+   /*加载画面*/
+        .loading {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+
+            position: fixed;
+            flex-direction: column;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: #f7f7f7;
+            z-index: 100000000;
+            transition: 1s ease;
+        }
+
+        .loading svg {
+            width: 5rem;
+            margin-bottom: 2rem;
+            overflow: visible;
+            transition: 0.3s ease;
+        }
+
+        .loading svg circle {
+            fill: none;
+            stroke: #171717;
+            stroke-width: 12;
+            stroke-dasharray: 160;
+            stroke-dashoffset: 160;
+            transform-origin: center;
+            animation: circle_rotate 3s ease-in infinite;
+        }
+
+        @keyframes circle_rotate {
+            0% {
+                transform: rotate(0deg);
+                stroke-dashoffset: 160;
+            }
+
+            100% {
+                transform: rotate(360deg);
+                stroke-dashoffset: -160;
+            }
+        }
+
+        .loading p {
+            font-family: sans-serif;
+            font-size: 2rem;
+            color: #171717;
+            font-weight: 900;
+            transition: 0.3s ease;
+        }
+
+        .loading_out {
+            transform: translateY(100%);
+        }
+
+        .loading_out svg,
+        .loading_out p {
+            opacity: 0;
+        }
+    
+   
+        
+        
+  </style>
+</head>
+<body>
+  
+  <div class="loading">
+        <svg viewbox='0 0 50 50'>
+            <circle r='25' cx='25' cy='25'></circle>
+        </svg>
+        <p style="font-size: 4vmin; margin-top: 0px;">LOADING</p>
+    </div>
+
+    <div class="img-container">
+    <div class="Sun">
+      <img src="tupian/太阳.png" alt="太阳">
+    </div>
+    <div class="aaa">
+      <a href="syeeee.html">
+        <img src="tupian/图标.png" alt="图标" class="hover-img">
+        <img src="tupian/更多1.png" alt="星球" class="a">
+      </a>
+    </div>
+    <div class="Mercury">
+      <a href="水星.html">
+        <img src="tupian/图标.png" alt="图标" class="hover-img">
+        <img src="tupian/水星.png" alt="星球" class="mercury">
+      </a>
+    </div>
+    <div class="Venus">
+        <a href="金星.html">
+            <img src="tupian/图标.png" alt="图标" class="hover-img">
+            <img src="tupian/金星.png" alt="星球" class="venus">
+        </a>
+    </div>
+    <div class="Earth">
+        <a href="地球.html">
+            <img src="tupian/图标.png" alt="图标" class="hover-img">
+            <img src="tupian/地球.png" alt="星球" class="earth">
+        </a>
+    </div>
+    <div class="Mars">
+        <a href="火星.html">
+      <img src="tupian/图标.png" alt="图标" class="hover-img">
+      <img src="tupian/火星.png" alt="星球" class="mars">
+      </a>
+    </div>
+    <div class="Jupiter">
+        <a href="木星.html">
+            <img src="tupian/图标.png" alt="图标" class="hover-img">
+            <img src="tupian/木星.png" alt="星球" class="jupiter">
+         </a>
+    </div>
+    <div class="Saturn">
+        <a href="土星.html">
+            <img src="tupian/图标.png" alt="图标" class="hover-img">
+            <img src="tupian/土星.png" alt="星球" class="saturn">
+        </a>
+    </div>
+    <div class="Uranus">
+        <a href="天王星.html">
+            <img src="tupian/图标.png" alt="图标" class="hover-img">
+            <img src="tupian/天王星.png" alt="星球" class="uranus">
+        </a>
+    </div>
+    <div class="Neptune">
+        <a href="海王星.html">
+            <img src="tupian/图标.png" alt="图标" class="hover-img">
+            <img src="tupian/海王星1.png" alt="星球" class="neptune">
+        </a>
+  </div>
+  
+
+    <div class="card">
+        <img src="tupian/水星卡片.png" alt="卡片" class="mercury">
+        <img src="tupian/金星卡片.png" alt="卡片" class="venus">
+        <img src="tupian/地球卡片.png" alt="卡片" class="earth">
+        <img src="tupian/火星卡片.png" alt="卡片" class="mars">
+        <img src="tupian/木星卡片.png" alt="卡片" class="jupiter">
+        <img src="tupian/土星卡片.png" alt="卡片" class="saturn">
+        <img src="tupian/天王星卡片.png" alt="卡片" class="uranus">
+        <img src="tupian/海王星卡片.png" alt="卡片" class="neptune">
+    </div>
+</div>
+    
+
+
+    
+
+
+
+
+<div class="contact-group">
+    <div class="vertical-line top-line"></div>
+    <div class="contact-text">CONTACT&nbsp;&nbsp; US</div>
+
+    <img src="tupian/wx1.png" alt="wx logo" class="contact-img first-img">
+    <img src="tupian/wb1.png" alt="wb logo" class="contact-img">
+    <img src="tupian/blbl1.png" alt="blbl logo" class="contact-img">
+    <img src="tupian/qq1.png" alt="qq logo" class="contact-img">
+    <img src="tupian/dy1.png" alt="dy logo" class="contact-img">
+    <div class="vertical-line bottom-line"></div>
+  </div>
+
+    <video class="bg-video" autoplay loop muted playsinline>
+        <source src="tupian/背景3.mp4" type="video/mp4">
+        您的浏览器不支持视频播放
+    </video>
+  
+  <div class="title">
+        <nav>
+             <a onclick="loading.in('index.html')" >首页</a>
+            <a onclick="loading.in('sye2.html')" >星际故事</a>
+            <a onclick="loading.in('w.html')">太阳系</a>
+            <a onclick="loading.in('text4.html')">星际知识</a>
+            
+            
+            <div class="animation start-home"></div>
+        </nav>
+    </div>
+
+  <script>
+    
+    const loading = {
+        container: document.querySelector(".loading"),
+        in(target) {
+            this.container.classList.remove("loading_out");
+            setTimeout(() => {
+                window.location.href = target;
+            }, 1000)
+        },
+        out() {
+            this.container.classList.add("loading_out");
+        }
+    };
+    window.addEventListener("load", () => {
+        loading.out();
+    })
+</script>
+</body>
+
+</html>
