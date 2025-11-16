@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            
+        }
+        .bg-video{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height:100%;
+            object-fit:cover;
+            z-index:-1;
+        }
+        h1{
+            position: fixed;
+            color: #ffffff;
+            top: 8%;
+            right: 35%;
+            font-size: 66px;
+            text-shadow: 0 0 0.5em #fff; 
+        }
+        .shell {
+            position: relative;
+            min-width: 1000px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            /* 设置3d变化 */
+            transform-style: preserve-3d;
+            /* 添加透视效果 */
+            perspective: 900px;
+        }
+
+        .shell .box {
+            position: relative;
+            width: 250px;
+            height: 350px;
+            transition: 0.3s;
+            overflow: hidden;
+            margin: 30px;
+            transform: rotateY(0deg);
+            transition-delay: .1s;
+            border-radius: 5px;
+            border: #fff 5px solid;
+        }
+
+        /* 当鼠标所有卡片的父元素点shell上时，
+        所有卡片像Y轴翻转20度 */
+        .shell:hover .box {
+            transform: rotateY(20deg);
+        }
+
+        /* 当鼠标悬浮在当前卡片上时，当前卡片的翻转角度为0，
+        并放大一点二五倍，加个阴影 */
+        .shell .box:hover {
+            transform: rotateY(0deg) scale(1.25);
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+
+        /* 当鼠标悬浮在卡片上时，
+        当前卡片后面的所有卡片全部都反向翻转负20度 */
+        .shell .box:hover~.box {
+            transform: rotateY(-20deg);
+        }
+
+        .shell .box .images img {
+            width: 100%;
+        }
+
+        .shell .box .content {
+            position: absolute;
+            top: 0;
+            width: 90%;
+            height: 100%;
+            z-index: 999;
+            padding: 15px;
+        }
+
+        .shell .box .content h2 {
+            color: rgb(0, 0, 0);
+            transition: 0.3s;
+            font-size: 35px;
+            transform: translateY(-100px);
+           background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        .shell .box:hover .content h2 {
+            transform: translateY(-15px);
+        }
+
+        .shell .box .content p {
+            color: rgb(0, 0, 0);
+            transition: 0.3s;
+            font-size: 14px;
+            transform: translateY(600px);
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        .shell .box:hover .content p {
+            transform: translateY(220px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 class="title">“家园的颜色——地球</h1>
+    <div class="shell">
+        
+        <div class="box">
+            <div class="images">
+                <img src="./tupian/one.png">
+            </div>
+            <div class="content">
+                <h2>蓝色生命摇篮</h2>
+                <p>地球表面约71%被海洋覆盖，从太空望去呈现出独特的蓝色，这是生命赖以生存的“水之家园”的颜色
+                </p>
+            </div>
+        </div>
+        <div class="box">
+            <div class="images">
+                <img src="./tupian/2.png">
+            </div>
+            <div class="content">
+                <h2>绿色生机画布</h2>
+                <p>陆地之上，茂密的森林、广阔的草原铺满绿色，从亚马逊雨林到非洲稀树草原，绿色是地球生命繁茂生长的色彩，彰显着家园的蓬勃生机。
+                </p>
+            </div>
+        </div>
+        <div class="box">
+            <div class="images">
+                <img src="./tupian/3.png">
+            </div>
+            <div class="content">
+                <h2>棕色大地脉络</h2>
+                <p>从珠穆朗玛峰的褐色岩石到撒哈拉沙漠的黄沙，棕色勾勒出地球的地形脉络
+                </p>
+            </div>
+        </div>
+        <div class="box">
+            <div class="images">
+                <img src="./tupian/4.png">
+            </div>
+            <div class="content">
+                <h2>白色冰雪印记</h2>
+                <p>极地和高山的白色冰雪，是地球气候调节的“冰箱”，白色的冰川与冰原，为地球增添了纯净而壮美的色彩。
+                </p>
+            </div>
+        </div>
+        <div class="box">
+            <div class="images">
+                <img src="./tupian/5.png">
+            </div>
+            <div class="content">
+                <h2>彩色生命交响</h2>
+                <p>从微小的细菌到庞大的蓝鲸，从绚烂的花朵到多样的人类文明，地球是无数生命色彩的集合地
+                </p>
+            </div>
+        </div>
+    </div>
+    <video class="bg-video" autoplay loop muted playsinline>
+        <source src="tupian/背景3.mp4" type="video/mp4">
+        您的浏览器不支持视频播放
+    </video>
+</body>
+
+</html>

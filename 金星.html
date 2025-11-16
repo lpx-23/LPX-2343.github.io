@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            
+        }
+        .bg-video{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height:100%;
+            object-fit:cover;
+            z-index:-1;
+        }
+        h1{
+            position: fixed;
+            color: #ffffff;
+            top: 8%;
+            right: 35%;
+            font-size: 66px;
+            text-shadow: 0 0 0.5em #fff; 
+        }
+        .shell {
+            position: relative;
+            min-width: 1000px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            /* 设置3d变化 */
+            transform-style: preserve-3d;
+            /* 添加透视效果 */
+            perspective: 900px;
+        }
+
+        .shell .box {
+            position: relative;
+            width: 250px;
+            height: 350px;
+            transition: 0.3s;
+            overflow: hidden;
+            margin: 30px;
+            transform: rotateY(0deg);
+            transition-delay: .1s;
+            border-radius: 5px;
+            border: #fff 5px solid;
+        }
+
+        /* 当鼠标所有卡片的父元素点shell上时，
+        所有卡片像Y轴翻转20度 */
+        .shell:hover .box {
+            transform: rotateY(20deg);
+        }
+
+        /* 当鼠标悬浮在当前卡片上时，当前卡片的翻转角度为0，
+        并放大一点二五倍，加个阴影 */
+        .shell .box:hover {
+            transform: rotateY(0deg) scale(1.25);
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+
+        /* 当鼠标悬浮在卡片上时，
+        当前卡片后面的所有卡片全部都反向翻转负20度 */
+        .shell .box:hover~.box {
+            transform: rotateY(-20deg);
+        }
+
+        .shell .box .images img {
+            width: 100%;
+        }
+
+        .shell .box .content {
+            position: absolute;
+            top: 0;
+            width: 90%;
+            height: 100%;
+            z-index: 999;
+            padding: 15px;
+        }
+
+        .shell .box .content h2 {
+            color: rgb(0, 0, 0);
+            transition: 0.3s;
+            font-size: 35px;
+            transform: translateY(-100px);
+           background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        .shell .box:hover .content h2 {
+            transform: translateY(-15px);
+        }
+
+        .shell .box .content p {
+            color: rgb(0, 0, 0);
+            transition: 0.3s;
+            font-size: 14px;
+            transform: translateY(600px);
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        .shell .box:hover .content p {
+            transform: translateY(220px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 class="title">漫步云端——金星</h1>
+    <div class="shell">
+        
+        <div class="box">
+            <div class="images">
+                <img src="./tupian/one.png">
+            </div>
+            <div class="content">
+                <h2>浓密云层包裹</h2>
+                <p>被厚达20-30公里的硫酸云覆盖，完全遮蔽地表，从太空望去如“漂浮在云端的星球”，神秘又梦幻。
+                </p>
+            </div>
+        </div>
+        <div class="box">
+            <div class="images">
+                <img src="./tupian/2.png">
+            </div>
+            <div class="content">
+                <h2>云层动态奇观</h2>
+                <p>上层云层以每秒100米的速度高速流动，形成持续的云层环流，宛如“云端之上的极速漫步”。
+                </p>
+            </div>
+        </div>
+        <div class="box">
+            <div class="images">
+                <img src="./tupian/3.png">
+            </div>
+            <div class="content">
+                <h2>温室效应极致</h2>
+                <p>二氧化碳主导的大气层引发超强温室效应，表面温度达467℃，云层下的高温环境如同“云端包裹的热穹顶”
+                </p>
+            </div>
+        </div>
+        <div class="box">
+            <div class="images">
+                <img src="./tupian/4.png">
+            </div>
+            <div class="content">
+                <h2>云层反射荣光</h2>
+                <p>云层对太阳光的反射率超70%，是太阳系中最亮的行星（除太阳月球），肉眼可见其“云端散发璀璨光芒”。
+                </p>
+            </div>
+        </div>
+        <div class="box">
+            <div class="images">
+                <img src="./tupian/5.png">
+            </div>
+            <div class="content">
+                <h2>云雾笼罩</h2>
+                <p>浓密云层阻碍观测，人类长期无法直接窥见地表，其内部环境充满未知，恰似“云端守护的神秘疆域”。
+                </p>
+            </div>
+        </div>
+    </div>
+    <video class="bg-video" autoplay loop muted playsinline>
+        <source src="tupian/背景3.mp4" type="video/mp4">
+        您的浏览器不支持视频播放
+    </video>
+</body>
+
+</html>

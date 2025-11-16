@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            
+        }
+        .bg-video{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height:100%;
+            object-fit:cover;
+            z-index:-1;
+        }
+        h1{
+            position: fixed;
+            color: #ffffff;
+            top: 8%;
+            right: 35%;
+            font-size: 66px;
+            text-shadow: 0 0 0.5em #fff; 
+        }
+        .shell {
+            position: relative;
+            min-width: 1000px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            /* 设置3d变化 */
+            transform-style: preserve-3d;
+            /* 添加透视效果 */
+            perspective: 900px;
+        }
+
+        .shell .box {
+            position: relative;
+            width: 250px;
+            height: 350px;
+            transition: 0.3s;
+            overflow: hidden;
+            margin: 30px;
+            transform: rotateY(0deg);
+            transition-delay: .1s;
+            border-radius: 5px;
+            border: #fff 5px solid;
+        }
+
+        /* 当鼠标所有卡片的父元素点shell上时，
+        所有卡片像Y轴翻转20度 */
+        .shell:hover .box {
+            transform: rotateY(20deg);
+        }
+
+        /* 当鼠标悬浮在当前卡片上时，当前卡片的翻转角度为0，
+        并放大一点二五倍，加个阴影 */
+        .shell .box:hover {
+            transform: rotateY(0deg) scale(1.25);
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+
+        /* 当鼠标悬浮在卡片上时，
+        当前卡片后面的所有卡片全部都反向翻转负20度 */
+        .shell .box:hover~.box {
+            transform: rotateY(-20deg);
+        }
+
+        .shell .box .images img {
+            width: 100%;
+        }
+
+        .shell .box .content {
+            position: absolute;
+            top: 0;
+            width: 90%;
+            height: 100%;
+            z-index: 999;
+            padding: 15px;
+        }
+
+        .shell .box .content h2 {
+            color: rgb(0, 0, 0);
+            transition: 0.3s;
+            font-size: 35px;
+            transform: translateY(-100px);
+           background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        .shell .box:hover .content h2 {
+            transform: translateY(-15px);
+        }
+
+        .shell .box .content p {
+            color: rgb(0, 0, 0);
+            transition: 0.3s;
+            font-size: 14px;
+            transform: translateY(600px);
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        .shell .box:hover .content p {
+            transform: translateY(220px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 class="title">红色的星球——火星</h1>
+    <div class="shell">
+        
+        <div class="box">
+            <div class="images">
+                <img src="./tupian/one.png">
+            </div>
+            <div class="content">
+                <h2>赤铁矿主导</h2>
+                <p>表面广泛分布赤铁矿（氧化铁），即铁锈成分，阳光照射下反射出鲜明红色，成为星球的主色调。
+                </p>
+            </div>
+        </div>
+        <div class="box">
+            <div class="images">
+                <img src="./tupian/2.png">
+            </div>
+            <div class="content">
+                <h2>红色沙尘覆盖</h2>
+                <p>地表被厚达数米的红色沙尘包裹，从赤道到极地，沙尘遍布平原、峡谷，视觉上呈现全域红色景观。
+                </p>
+            </div>
+        </div>
+        <div class="box">
+            <div class="images">
+                <img src="./tupian/3.png">
+            </div>
+            <div class="content">
+                <h2>红色风暴席卷</h2>
+                <p>红色的干涸河床、红色沙丘、红色岩石山脉，各类地貌均被红色基调贯穿，构成统一的红色视觉体系。
+                </p>
+            </div>
+        </div>
+        <div class="box">
+            <div class="images">
+                <img src="./tupian/4.png">
+            </div>
+            <div class="content">
+                <h2>红色地貌印记</h2>
+                <p>红色的干涸河床、红色沙丘、红色岩石山脉，各类地貌均被红色基调贯穿，构成统一的红色视觉体系。
+                </p>
+            </div>
+        </div>
+        <div class="box">
+            <div class="images">
+                <img src="./tupian/5.png">
+            </div>
+            <div class="content">
+                <h2>肉眼可见红</h2>
+                <p>从地球或太空观测，火星是除太阳、月球外，肉眼能清晰看到的红色天体，红色成为其最易辨识的标志。
+                </p>
+            </div>
+        </div>
+    </div>
+    <video class="bg-video" autoplay loop muted playsinline>
+        <source src="tupian/背景3.mp4" type="video/mp4">
+        您的浏览器不支持视频播放
+    </video>
+</body>
+
+</html>

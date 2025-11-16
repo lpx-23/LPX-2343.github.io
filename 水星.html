@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        body {
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            
+        }
+        .bg-video{
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height:100%;
+            object-fit:cover;
+            z-index:-1;
+        }
+        h1{
+            position: fixed;
+            color: #ffffff;
+            top: 8%;
+            right: 35%;
+            font-size: 66px;
+            text-shadow: 0 0 0.5em #fff; 
+        }
+        .shell {
+            position: relative;
+            min-width: 1000px;
+            display: flex;
+            justify-content: center;
+            flex-wrap: wrap;
+            /* 设置3d变化 */
+            transform-style: preserve-3d;
+            /* 添加透视效果 */
+            perspective: 900px;
+        }
+
+        .shell .box {
+            position: relative;
+            width: 250px;
+            height: 350px;
+            transition: 0.3s;
+            overflow: hidden;
+            margin: 30px;
+            transform: rotateY(0deg);
+            transition-delay: .1s;
+            border-radius: 5px;
+            border: #fff 5px solid;
+        }
+
+        /* 当鼠标所有卡片的父元素点shell上时，
+        所有卡片像Y轴翻转20度 */
+        .shell:hover .box {
+            transform: rotateY(20deg);
+        }
+
+        /* 当鼠标悬浮在当前卡片上时，当前卡片的翻转角度为0，
+        并放大一点二五倍，加个阴影 */
+        .shell .box:hover {
+            transform: rotateY(0deg) scale(1.25);
+            box-shadow: 0 25px 40px rgba(0, 0, 0, 0.7);
+            z-index: 1;
+        }
+
+        /* 当鼠标悬浮在卡片上时，
+        当前卡片后面的所有卡片全部都反向翻转负20度 */
+        .shell .box:hover~.box {
+            transform: rotateY(-20deg);
+        }
+
+        .shell .box .images img {
+            width: 100%;
+        }
+
+        .shell .box .content {
+            position: absolute;
+            top: 0;
+            width: 90%;
+            height: 100%;
+            z-index: 999;
+            padding: 15px;
+        }
+
+        .shell .box .content h2 {
+            color: rgb(0, 0, 0);
+            transition: 0.3s;
+            font-size: 35px;
+            transform: translateY(-100px);
+           background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        .shell .box:hover .content h2 {
+            transform: translateY(-15px);
+        }
+
+        .shell .box .content p {
+            color: rgb(0, 0, 0);
+            transition: 0.3s;
+            font-size: 14px;
+            transform: translateY(600px);
+            background-color: rgba(255, 255, 255, 0.7);
+        }
+
+        .shell .box:hover .content p {
+            transform: translateY(220px);
+        }
+    </style>
+</head>
+
+<body>
+
+    <h1 class="title">拜访恶魔的工坊——水星</h1>
+    <div class="shell">
+        
+        <div class="box">
+            <div class="images">
+                <img src="./tupian/one.png">
+            </div>
+            <div class="content">
+                <h2>极端温差炼狱</h2>
+                <p>白昼超430℃，黑夜低至-180℃，表面温差达600℃以上，环境剧烈反差如“恶魔锻造炉”。
+                </p>
+            </div>
+        </div>
+        <div class="box">
+            <div class="images">
+                <img src="./tupian/2.png">
+            </div>
+            <div class="content">
+                <h2>无大气防护盾</h2>
+                <p>几乎无大气层，无法保温或阻挡陨石，表面布满密集撞击坑，宛如被“恶魔肆意雕琢”的荒芜之地。
+                </p>
+            </div>
+        </div>
+        <div class="box">
+            <div class="images">
+                <img src="./tupian/3.png">
+            </div>
+            <div class="content">
+                <h2>近日轨道险境</h2>
+                <p>距离太阳仅约5800万公里，是太阳系最近行星，承受极强太阳辐射，如同靠近“恶魔核心”。
+                </p>
+            </div>
+        </div>
+        <div class="box">
+            <div class="images">
+                <img src="./tupian/4.png">
+            </div>
+            <div class="content">
+                <h2>自转公转比</h2>
+                <p>自转3圈≈公转2圈，导致一昼夜长达176地球日，昼夜交替极端缓慢，环境稳定性极差。
+                </p>
+            </div>
+        </div>
+        <div class="box">
+            <div class="images">
+                <img src="./tupian/5.png">
+            </div>
+            <div class="content">
+                <h2>探索难度极高</h2>
+                <p>靠近太阳的强引力和辐射，对探测器轨道控制、隔热技术要求极高，探测任务风险大、难度高。
+                </p>
+            </div>
+        </div>
+    </div>
+    <video class="bg-video" autoplay loop muted playsinline>
+        <source src="tupian/背景3.mp4" type="video/mp4">
+        您的浏览器不支持视频播放
+    </video>
+</body>
+
+</html>
